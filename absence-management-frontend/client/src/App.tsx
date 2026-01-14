@@ -22,12 +22,9 @@ import AdminSettings from "./pages/admin/Settings";
 
 // Teacher Pages
 import TeacherDashboard from "./pages/teacher/Dashboard";
-import TeacherModules from "./pages/teacher/Modules";
-import TeacherClasses from "./pages/teacher/Classes";
+import TeacherSessions from "./pages/teacher/Sessions";
 import TeacherAttendance from "./pages/teacher/Attendance";
-import TeacherDocuments from "./pages/teacher/Documents";
 import TeacherAnnouncements from "./pages/teacher/Announcements";
-import TeacherSettings from "./pages/teacher/Settings";
 
 // Student Pages
 import StudentDashboard from "./pages/student/Dashboard";
@@ -68,12 +65,9 @@ function Router() {
 
       {/* Teacher Routes */}
       <Route path="/teacher/dashboard" component={TeacherDashboard} />
-      <Route path="/teacher/modules" component={TeacherModules} />
-      <Route path="/teacher/classes" component={TeacherClasses} />
+      <Route path="/teacher/sessions" component={TeacherSessions} />
       <Route path="/teacher/attendance" component={TeacherAttendance} />
-      <Route path="/teacher/documents" component={TeacherDocuments} />
       <Route path="/teacher/announcements" component={TeacherAnnouncements} />
-      <Route path="/teacher/settings" component={TeacherSettings} />
 
       {/* Student Routes */}
       <Route path="/student/dashboard" component={StudentDashboard} />

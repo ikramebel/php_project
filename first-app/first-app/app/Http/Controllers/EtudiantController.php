@@ -89,7 +89,7 @@ class EtudiantController extends Controller
                 'password' => $etd->user->password ?? null,
                 'filiere' => $etd->filiere->nom ?? null,
                 'filiere_id' => $etd->filiere_id,
-                'semestre' => $etd->semestre,
+                'semester' => intval(substr($etd->semestre, 1)), // Convert S1 to 1
                 'annee_universitaire' => $etd->annee_universitaire,
             ];
         });

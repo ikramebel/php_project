@@ -20,7 +20,7 @@ import {
 import { Edit2, Trash2, Plus, Search, Filter, AlertCircle, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
-import { studentAPI } from '@/lib/api';
+import { studentAPI, filiereAPI } from '@/lib/api';
 
 interface Student {
   id: string;
@@ -33,6 +33,18 @@ interface Student {
   annee_universitaire: string;
 }
 
+interface Filiere {
+  id: string;
+  nom: string;
+  description?: string;
+  semestre: number;
+  annee_universitaire: string;
+  departement: {
+    id: string;
+    nom: string;
+  };
+}
+
 const FILIERES = ['CP1', 'CP2', 'GIIA', 'GPMA', 'INDUS', 'GATE', 'GMSI', 'GTR'];
 const SEMESTERS = [1, 2, 3, 4, 5, 6];
 const ACADEMIC_YEARS = ['2023-2024', '2024-2025', '2025-2026'];
@@ -40,6 +52,7 @@ const ACADEMIC_YEARS = ['2023-2024', '2024-2025', '2025-2026'];
 export default function AdminStudents() {
   const [students, setStudents] = useState<Student[]>([]);
   const [filteredStudents, setFilteredStudents] = useState<Student[]>([]);
+  const [filieres, setFilieres] = useState<Filiere[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFiliere, setSelectedFiliere] = useState('all');
@@ -52,9 +65,9 @@ export default function AdminStudents() {
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Fetch students on mount
+  // Fetch students and filieres on mount
   useEffect(() => {
-    fetchStudents();
+    fetchData();
   }, []);
 
   // Apply filters whenever filter values change
@@ -62,15 +75,21 @@ export default function AdminStudents() {
     applyFilters();
   }, [students, searchTerm, selectedFiliere, selectedSemester, selectedYear]);
 
-  const fetchStudents = async () => {
+  const fetchData = async () => {
     try {
       setLoading(true);
-      // Try to fetch from API, fallback to mock data if API fails
+      // Fetch filieres
+      const filieresData = await filiereAPI.getAll();
+      console.log('Filieres data:', filieresData);
+      setFilieres(Array.isArray(filieresData) ? filieresData : []);
+
+      // Fetch students
       try {
         const data = await studentAPI.getAll() as any;
+        console.log('Students data:', data);
         setStudents(Array.isArray(data) ? data : []);
       } catch (error) {
-        console.warn('Failed to fetch from API, using mock data:', error);
+        console.warn('Failed to fetch students from API, using mock data:', error);
         // Use mock data as fallback
         const mockStudents: Student[] = [
           {
@@ -129,6 +148,14 @@ export default function AdminStudents() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const getFiliereName = (filiereId: string) => {
+    console.log('Looking for filiere with id:', filiereId, 'in filieres:', filieres);
+    const filiere = filieres.find(f => f.id === filiereId);
+    const result = filiere ? filiere.nom : filiereId; // fallback to id if not found
+    console.log('Found filiere:', filiere, 'returning:', result);
+    return result;
   };
 
   const applyFilters = () => {
@@ -250,11 +277,9 @@ export default function AdminStudents() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Programs</SelectItem>
-                  <SelectItem value="CP1">CP1</SelectItem>
-                  <SelectItem value="CP2">CP2</SelectItem>
-                  {FILIERES.map((f) => (
-                    <SelectItem key={f} value={f}>
-                      {f}
+                  {filieres.map((f) => (
+                    <SelectItem key={f.id} value={f.id}>
+                      {f.nom}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -361,7 +386,7 @@ export default function AdminStudents() {
                       <td className="table-cell font-mono text-sm">{student.apogee}</td>
                       <td className="table-cell">
                         <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">
-                          {student.filiere}
+                          {getFiliereName(student.filiere)}
                         </span>
                       </td>
                       <td className="table-cell text-center">{student.semester}</td>

@@ -29,10 +29,10 @@ export default function AdminPrograms() {
   useEffect(() => {
     const fetchFilieresWithCounts = async () => {
       try {
-        const filieresData = await filiereAPI.getAll();
+        const filieresData = await filiereAPI.getAll() as Filiere[];
         const filieresWithCounts = await Promise.all(
           filieresData.map(async (filiere: any) => {
-            const students = await studentAPI.getByFiliere(filiere.id);
+            const students = await studentAPI.getByFiliere(filiere.id) as any[];
             return {
               ...filiere,
               studentCount: students.length,

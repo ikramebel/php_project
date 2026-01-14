@@ -25,7 +25,7 @@ class ModuleController extends Controller
 
     public function getAllModules()
     {
-        $modules = Module::all();
+        $modules = Module::with('filiere', 'enseignant.user')->get();
         return response()->json(['data' => $modules], 200);
     }
 

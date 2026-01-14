@@ -300,34 +300,34 @@ export const presenceAPI = {
 
 export const annonceAPI = {
   getAll: () =>
-    apiRequest('/api/annonces', {
+    apiRequest('/annonces', {
       method: 'GET',
     }),
 
   getById: (id: string) =>
-    apiRequest(`/api/annonces/${id}`, {
+    apiRequest(`/annonces/${id}`, {
       method: 'GET',
     }),
 
   create: (data: any) =>
-    apiRequest('/api/annonces/add', {
+    apiRequest('/annonces/add', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
 
   update: (id: string, data: any) =>
-    apiRequest(`/api/annonces/${id}`, {
+    apiRequest(`/annonces/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     }),
 
   delete: (id: string) =>
-    apiRequest(`/api/annonces/${id}`, {
+    apiRequest(`/annonces/${id}`, {
       method: 'DELETE',
     }),
 
   getByEnseignant: (enseignantId: string) =>
-    apiRequest(`/api/annonces/enseignant/${enseignantId}`, {
+    apiRequest(`/annonces/enseignant/${enseignantId}`, {
       method: 'GET',
     }),
 };
@@ -391,5 +391,40 @@ export const departementAPI = {
   delete: (id: string) =>
     apiRequest(`/departements/${id}`, {
       method: 'DELETE',
+    }),
+};
+
+// ==================== DOCUMENT ENDPOINTS ====================
+
+export const documentsAPI = {
+  getAll: () =>
+    apiRequest('/documents', {
+      method: 'GET',
+    }),
+
+  getById: (id: string) =>
+    apiRequest(`/documents/${id}`, {
+      method: 'GET',
+    }),
+
+  upload: (formData: FormData) =>
+    apiRequest('/documents/upload', {
+      method: 'POST',
+      body: formData,
+    }),
+
+  delete: (id: string) =>
+    apiRequest(`/documents/${id}`, {
+      method: 'DELETE',
+    }),
+
+  getByModule: (moduleId: string) =>
+    apiRequest(`/documents/module/${moduleId}`, {
+      method: 'GET',
+    }),
+
+  getByTeacher: (teacherId: string) =>
+    apiRequest(`/documents/teacher/${teacherId}`, {
+      method: 'GET',
     }),
 };

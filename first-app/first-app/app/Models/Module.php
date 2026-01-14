@@ -14,6 +14,10 @@ class Module extends Model
         return $this->belongsTo(Filiere::class); 
     }
     
+    public function enseignant() {
+        return $this->belongsTo(Enseignant::class);
+    }
+    
     public function seances() {
         return $this->hasMany(Seance::class);
     }

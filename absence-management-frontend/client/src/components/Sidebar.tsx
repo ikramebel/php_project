@@ -35,12 +35,9 @@ function getSidebarItems(role: UserRole): NavItem[] {
     ],
     enseignant: [
       { label: 'Tableau de Bord', href: '/teacher/dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
-      { label: 'Mes Modules', href: '/teacher/modules', icon: <BookOpen className="w-5 h-5" /> },
-      { label: 'Classes', href: '/teacher/classes', icon: <Users className="w-5 h-5" /> },
-      { label: 'Présence', href: '/teacher/attendance', icon: <ClipboardList className="w-5 h-5" /> },
-      { label: 'Documents', href: '/teacher/documents', icon: <FileText className="w-5 h-5" /> },
+      { label: 'Séances', href: '/teacher/sessions', icon: <ClipboardList className="w-5 h-5" /> },
       { label: 'Annonces', href: '/teacher/announcements', icon: <BarChart3 className="w-5 h-5" /> },
-      { label: 'Paramètres', href: '/teacher/settings', icon: <Settings className="w-5 h-5" /> },
+      { label: 'Suivi Présence', href: '/teacher/attendance', icon: <Users className="w-5 h-5" /> },
     ],
     etudiant: [
       { label: 'Tableau de Bord', href: '/student/dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },

@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `annonces` (
   `titre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `contenu` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `datepublication` date NOT NULL,
-  `enseignant_id` bigint UNSIGNED NOT NULL,
+  `enseignant_id` bigint UNSIGNED NULL,
   `filiere_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `niveau` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `departements` (
 --
 
 INSERT INTO `departements` (`id`, `nom`, `created_at`, `updated_at`) VALUES
-(1, 'Departement Industriel', '2025-12-29 21:22:30', '2025-12-29 21:22:30'),
+(1, 'departement industriel', '2025-12-29 21:22:30', '2025-12-29 21:22:30'),
 (2, 'Departement Informatique', '2026-01-14 02:02:03', '2026-01-14 02:02:03');
 
 -- --------------------------------------------------------
@@ -166,6 +166,8 @@ CREATE TABLE IF NOT EXISTS `etudiants` (
   `apogee` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
   `filiere_id` bigint UNSIGNED NOT NULL,
+  `semestre` varchar(255) NOT NULL DEFAULT 'S1',
+  `annee_universitaire` varchar(255) NOT NULL DEFAULT '2025-2026',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
