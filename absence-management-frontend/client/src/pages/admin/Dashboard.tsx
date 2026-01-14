@@ -1,6 +1,7 @@
 import { DashboardLayout } from '@/components/DashboardLayout';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { Users, BookOpen, BarChart3, TrendingUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { apiRequest } from '@/lib/api';
@@ -118,6 +119,15 @@ export default function AdminDashboard() {
 
         {/* Charts and Additional Info */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Reports */}
+          <Card className="p-6">
+            <h3 className="text-lg font-bold text-foreground mb-4">Reports</h3>
+            <p className="text-sm text-muted-foreground mb-4">Generate and view detailed reports</p>
+            <Button asChild className="w-full">
+              <a href="/admin/reports">View Reports</a>
+            </Button>
+          </Card>
+
           {/* Recent Activity */}
           <Card className="lg:col-span-2 p-6">
             <h3 className="text-lg font-bold text-foreground mb-4">Recent Activity</h3>

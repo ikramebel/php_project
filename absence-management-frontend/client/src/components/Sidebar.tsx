@@ -34,7 +34,6 @@ function getSidebarItems(role: UserRole): NavItem[] {
       { label: 'Modules', href: '/admin/modules', icon: <FileText className="w-5 h-5" /> },
       { label: 'Schedule', href: '/admin/schedule', icon: <ClipboardList className="w-5 h-5" /> },
       { label: 'Reports', href: '/admin/reports', icon: <BarChart3 className="w-5 h-5" /> },
-      { label: 'Settings', href: '/admin/settings', icon: <Settings className="w-5 h-5" /> },
     ],
     enseignant: [
       { label: 'Dashboard', href: '/teacher/dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
