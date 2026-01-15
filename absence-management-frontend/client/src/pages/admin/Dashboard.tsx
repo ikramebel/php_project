@@ -124,11 +124,11 @@ export default function AdminDashboard() {
     setSubmitting(true);
 
     try {
-      // Get the current user data from localStorage
+      
       const userData = localStorage.getItem('user');
       const user = userData ? JSON.parse(userData) : null;
       
-      // For admin users, enseignant_id might not exist, so we set it to null
+      
       const enseignantId = user?.role === 'admin' ? null : user?.enseignant_id;
 
       await annonceAPI.create({

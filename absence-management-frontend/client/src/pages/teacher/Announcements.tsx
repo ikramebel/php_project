@@ -32,7 +32,7 @@ export default function TeacherAnnouncements() {
   const [target, setTarget] = useState<'students' | 'teachers' | 'all'>('students');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // --- Fetch announcements existantes depuis le backend
+  
   const fetchAnnouncements = async () => {
     try {
       const res = await fetch('http://localhost:8000/api/annonces', {
@@ -55,7 +55,7 @@ export default function TeacherAnnouncements() {
     fetchAnnouncements();
   }, []);
 
-  // --- Poster une nouvelle annonce
+ 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -70,8 +70,8 @@ export default function TeacherAnnouncements() {
       const payload = {
         titre: title.trim(),
         contenu: content.trim(),
-        datepublication: new Date().toISOString().split('T')[0], // yyyy-mm-dd
-        enseignant_id: user?.enseignant_id || 1, // remplacer 1 par l'id réel de l'enseignant
+        datepublication: new Date().toISOString().split('T')[0], 
+        enseignant_id: user?.enseignant_id || 1, 
       };
 
       const res = await fetch('http://localhost:8000/api/annonces/add', {
@@ -90,10 +90,10 @@ export default function TeacherAnnouncements() {
         return;
       }
 
-      // Ajouter la nouvelle annonce au state
+      
       setAnnouncements([data.annonce, ...announcements]);
 
-      // Reset form
+     
       setTitle('');
       setContent('');
       setTarget('students');

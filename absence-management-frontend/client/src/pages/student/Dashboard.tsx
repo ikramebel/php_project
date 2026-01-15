@@ -38,7 +38,7 @@ export default function StudentDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch absence stats (simulated for now)
+        
         setAbsenceStats([
           {
             label: 'Absences Justifiées',
@@ -68,7 +68,7 @@ export default function StudentDashboard() {
 
         // Fetch announcements
         const annoncesData = await annonceAPI.getAll();
-        setAnnonces(annoncesData.annonces.slice(0, 5)); // Show latest 5
+        setAnnonces(annoncesData.annonces.slice(0, 5)); 
       } catch (error) {
         console.error('Failed to fetch data:', error);
       } finally {

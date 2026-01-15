@@ -9,13 +9,7 @@ import { toast } from 'sonner';
 import { userAPI } from '@/lib/api';
 import { apiRequest } from '@/lib/api';
 
-/**
- * Page de Connexion - Point d'entrée commun pour tous les utilisateurs (Admin, Enseignant, Étudiant)
- * Design: ENSA Safi Moderne Institutionnel
- * - Mise en page propre et professionnelle
- * - Authentification basée sur l'email
- * - Redirection basée sur le rôle après connexion
- */
+
 export default function Login() {
   const [, setLocation] = useLocation();
   const { login } = useAuth();
@@ -30,7 +24,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      // Call backend login API
+      
       const data = await userAPI.login(email, password) as any;
 
       if (!data.token) {
@@ -39,13 +33,13 @@ export default function Login() {
         return;
       }
 
-      // Store token
+      
       localStorage.setItem('auth_token', data.token);
 
-      // Get user data from /users/me
+      
       const userData = await apiRequest('/users/me');
 
-      // Store user info
+      
       localStorage.setItem('user_id', userData.id);
       localStorage.setItem('user_name', userData.name);
       localStorage.setItem('user_prenom', userData.prenom);
@@ -55,10 +49,10 @@ export default function Login() {
         localStorage.setItem('enseignant_id', userData.enseignant_id);
       }
 
-      // Update auth context
+      
       login(data.token, userData);
 
-      // Redirect based on role
+      
       switch (userData.role) {
         case 'admin':
           setLocation('/admin/dashboard');

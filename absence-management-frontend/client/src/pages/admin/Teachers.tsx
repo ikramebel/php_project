@@ -66,12 +66,11 @@ export default function AdminTeachers() {
 
     try {
       if (editingTeacher) {
-        // Update existing teacher
         await teacherAPI.update(editingTeacher.id, formData);
         toast.success('Enseignant modifié avec succès');
         setIsEditDialogOpen(false);
       } else {
-        // Create new teacher
+        
         await teacherAPI.create(formData);
         toast.success('Enseignant ajouté avec succès');
         setIsAddDialogOpen(false);

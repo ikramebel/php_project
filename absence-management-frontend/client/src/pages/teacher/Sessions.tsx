@@ -196,25 +196,19 @@ export default function TeacherSessions() {
 
   const markAttendanceForAllStudents = async () => {
     try {
-      // In a real implementation, this would call an API to mark attendance
-      // For now, we'll simulate the attendance marking
       console.log('Marking attendance for all students in session:', sessionStudents);
 
-      // Here you would typically send a request to mark all students as absent
-      // and then mark present students who scanned the QR code
-
-      // For demonstration, we'll just log the attendance
+      
       const attendanceData = sessionStudents.map(student => ({
         studentId: student.id,
         sessionId: 'current-session-id',
-        status: 'absent', // Default to absent, would be updated when QR is scanned
+        status: 'absent', 
         timestamp: new Date().toISOString(),
       }));
 
       console.log('Attendance data:', attendanceData);
 
-      // In a real app, you'd call something like:
-      // await attendanceAPI.markBulkAttendance(attendanceData);
+      
 
     } catch (error) {
       console.error('Failed to mark attendance:', error);

@@ -28,7 +28,7 @@ interface Student {
   prenom: string;
   email: string;
   apogee: string;
-  filiere: any; // Can be string or object
+  filiere: any; 
   filiere_id?: string;
   semester: number;
   annee_universitaire: string;
@@ -66,12 +66,12 @@ export default function AdminStudents() {
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Fetch students and filieres on mount
+  
   useEffect(() => {
     fetchData();
   }, []);
 
-  // Apply filters whenever filter values change
+  
   useEffect(() => {
     applyFilters();
   }, [students, searchTerm, selectedFiliere, selectedSemester, selectedYear]);
@@ -79,12 +79,12 @@ export default function AdminStudents() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      // Fetch filieres
+      
       const filieresData = await filiereAPI.getAll();
       console.log('Filieres data:', filieresData);
       setFilieres(Array.isArray(filieresData) ? filieresData : []);
 
-      // Fetch students
+      
       try {
         const data = await studentAPI.getAll() as any;
         console.log('Students data:', data);
@@ -104,7 +104,7 @@ export default function AdminStudents() {
     if (!filiere) {
       filiere = filieres.find(f => f.nom === filiereId);
     }
-    const result = filiere ? filiere.nom : filiereId; // fallback to id if not found
+    const result = filiere ? filiere.nom : filiereId; 
     console.log('Found filiere:', filiere, 'returning:', result);
     return result;
   };
@@ -123,7 +123,7 @@ export default function AdminStudents() {
       );
     }
 
-    // Filiere filter
+    
     if (selectedFiliere && selectedFiliere !== 'all') {
       filtered = filtered.filter((s) => {
         const filiereId = s.filiere_id || (s.filiere && typeof s.filiere === 'object' ? s.filiere.id : s.filiere);
@@ -133,12 +133,12 @@ export default function AdminStudents() {
       });
     }
 
-    // Semester filter
+    
     if (selectedSemester && selectedSemester !== 'all') {
       filtered = filtered.filter((s) => s.semester === parseInt(selectedSemester));
     }
 
-    // Academic year filter
+    
     if (selectedYear && selectedYear !== 'all') {
       filtered = filtered.filter((s) => s.annee_universitaire === selectedYear);
     }

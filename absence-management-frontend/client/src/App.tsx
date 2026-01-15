@@ -6,11 +6,11 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { Loader2 } from "lucide-react";
 
-// Pages
+
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
-// Admin Pages
+
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminStudents from "./pages/admin/Students";
 import AdminTeachers from "./pages/admin/Teachers";
@@ -20,13 +20,13 @@ import AdminSchedule from "./pages/admin/Schedule";
 import AdminReports from "./pages/admin/Reports";
 import AdminSettings from "./pages/admin/Settings";
 
-// Teacher Pages
+
 import TeacherDashboard from "./pages/teacher/Dashboard";
 import TeacherSessions from "./pages/teacher/Sessions";
 import TeacherAttendance from "./pages/teacher/Attendance";
 import TeacherAnnouncements from "./pages/teacher/Announcements";
 
-// Student Pages
+
 import StudentDashboard from "./pages/student/Dashboard";
 import StudentAbsences from "./pages/student/Absences";
 import StudentModules from "./pages/student/Modules";

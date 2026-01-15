@@ -18,7 +18,7 @@ export default function ScanPresence() {
   const [cameraPermission, setCameraPermission] = useState<'granted' | 'denied' | 'prompt'>('prompt');
 
   useEffect(() => {
-    // Cleanup scanner on unmount
+    
     return () => {
       if (scannerRef.current) {
         scannerRef.current.clear().catch(console.error);
@@ -51,7 +51,7 @@ export default function ScanPresence() {
     setScannedCode('');
 
     try {
-      // First, request camera permission explicitly
+      
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ 
           video: { facingMode: 'environment' } 
@@ -66,12 +66,11 @@ export default function ScanPresence() {
         return;
       }
 
-      // Clear any existing scanner
       if (scannerRef.current) {
         await scannerRef.current.clear();
       }
 
-      // Create new scanner with better error handling
+      
       const scanner = new Html5QrcodeScanner(
         "qr-reader",
         { 
@@ -86,14 +85,14 @@ export default function ScanPresence() {
 
       scannerRef.current = scanner;
 
-      // Start scanning
+      
       scanner.render(
         async (decodedText) => {
-          // Success callback
+          
           console.log('QR Code scanned:', decodedText);
           setScannedCode(decodedText);
           
-          // Stop scanning
+          
           try {
             await scanner.clear();
           } catch (e) {
@@ -101,11 +100,11 @@ export default function ScanPresence() {
           }
           setScanning(false);
           
-          // Mark attendance
+          
           await marquerPresence(decodedText);
         },
         (errorMessage) => {
-          // Error callback - only log if it's not a NotFound (no QR code detected)
+          
           if (!errorMessage.includes('NotFoundException')) {
             console.debug('Scan debug:', errorMessage);
           }
@@ -171,13 +170,13 @@ export default function ScanPresence() {
         setMessage('✅ ' + (data.message || 'Présence marquée avec succès !'));
         setError('');
         
-        // Play success sound (optional)
+        
         playSuccessSound();
       } else {
         setError('❌ ' + (data.message || 'Erreur lors du marquage de la présence'));
         setMessage('');
         
-        // Play error sound (optional)
+        
         playErrorSound();
       }
     } catch (err) {

@@ -61,7 +61,7 @@ export default function TeacherAttendance() {
       const filieresData = await filiereAPI.getAll();
       setFilieres(Array.isArray(filieresData) ? filieresData : []);
 
-      // Add CP1 and CP2 as additional programs
+      
       const additionalPrograms: any[] = [
         { id: 'CP1', nom: 'CP1' },
         { id: 'CP2', nom: 'CP2' },
@@ -71,13 +71,11 @@ export default function TeacherAttendance() {
       ];
       setFilieres(prev => [...prev, ...additionalPrograms]);
 
-      // Fetch students
+      
       const studentsData = await studentAPI.getAll();
       setStudents(Array.isArray(studentsData) ? studentsData : []);
 
-      // Fetch attendance records (replace with actual API call)
-      // const attendanceData = await attendanceAPI.getAll();
-      // setAttendanceRecords(Array.isArray(attendanceData) ? attendanceData : []);
+      
       setAttendanceRecords([]);
     } catch (error) {
       console.error('Failed to fetch data:', error);
@@ -91,7 +89,7 @@ export default function TeacherAttendance() {
   const applyFilters = () => {
     let filtered = students;
 
-    // Search filter
+    
     if (searchTerm) {
       filtered = filtered.filter(
         (s) =>
@@ -102,17 +100,17 @@ export default function TeacherAttendance() {
       );
     }
 
-    // Filiere filter
+   
     if (selectedFiliere && selectedFiliere !== 'all') {
       filtered = filtered.filter((s) => getStudentFiliereId(s) === selectedFiliere);
     }
 
-    // Semester filter
+    
     if (selectedSemester && selectedSemester !== 'all') {
       filtered = filtered.filter((s) => s.semester === parseInt(selectedSemester));
     }
 
-    // Year filter
+    
     if (selectedYear && selectedYear !== 'all') {
       filtered = filtered.filter((s) => s.annee_universitaire === selectedYear);
     }
@@ -164,7 +162,7 @@ export default function TeacherAttendance() {
     return student.filiere_id || student.filiere || '';
   };
 
-  // Apply filters when data or filters change
+  
   useEffect(() => {
     applyFilters();
   }, [students, searchTerm, selectedFiliere, selectedSemester, selectedYear]);

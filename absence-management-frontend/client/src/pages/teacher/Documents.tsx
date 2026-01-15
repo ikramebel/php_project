@@ -58,14 +58,14 @@ export default function TeacherDocuments() {
       const filieresData = await filiereAPI.getAll();
       setFilieres(Array.isArray(filieresData) ? filieresData : []);
 
-      // Add CP1 and CP2 as additional programs
+      
       const additionalPrograms: Filiere[] = [
         { id: 'CP1', nom: 'CP1' },
         { id: 'CP2', nom: 'CP2' }
       ];
       setFilieres(prev => [...prev, ...additionalPrograms]);
 
-      // Fetch modules for the current teacher
+      
       if (user && user.role === 'enseignant') {
         try {
           const modulesData = await moduleAPI.getByEnseignant(user.enseignant_id);
@@ -79,7 +79,7 @@ export default function TeacherDocuments() {
         }
       }
 
-      // Fetch documents for the current teacher
+      
       if (user && user.role === 'enseignant') {
         try {
           const documentsData = await documentsAPI.getByTeacher(user.id);
@@ -97,12 +97,12 @@ export default function TeacherDocuments() {
   };
 
   const fetchModulesByFiliere = (filiereId: string) => {
-    // Filter modules by selected filiere
+    
     if (filiereId) {
       const filtered = modules.filter(module => module.filiere_id === filiereId);
       setFilteredModules(filtered);
     } else {
-      setFilteredModules(modules); // Show all modules when no filiere selected
+      setFilteredModules(modules); 
     }
   };
 
@@ -122,17 +122,17 @@ export default function TeacherDocuments() {
       formData.append('annee_universitaire', selectedYear);
       formData.append('teacher_id', user?.id || '');
 
-      // Upload file using API
+      
       const result = await documentsAPI.upload(formData);
       console.log('File uploaded successfully:', result);
 
-      // Refresh documents list
+      
       if (user && user.role === 'enseignant') {
         const documentsData = await documentsAPI.getByTeacher(user.id);
         setDocuments(Array.isArray(documentsData) ? documentsData : []);
       }
 
-      // Reset form
+      
       setSelectedFile(null);
       setSelectedFiliere('');
       setSelectedModule('');
@@ -140,7 +140,7 @@ export default function TeacherDocuments() {
       setSelectedYear('');
     } catch (error) {
       console.error('Failed to upload file:', error);
-      // Fallback: add to local state for demo
+      
       const newDocument: DocumentFile = {
         id: Date.now().toString(),
         name: selectedFile.name,
@@ -165,14 +165,14 @@ export default function TeacherDocuments() {
   const deleteDocument = async (documentId: string) => {
     try {
       await documentsAPI.delete(documentId);
-      // Refresh documents list
+      
       if (user && user.role === 'enseignant') {
         const documentsData = await documentsAPI.getByTeacher(user.id);
         setDocuments(Array.isArray(documentsData) ? documentsData : []);
       }
     } catch (error) {
       console.error('Failed to delete document:', error);
-      // Fallback: remove from local state
+      
       setDocuments(prev => prev.filter(doc => doc.id !== documentId));
     }
   };
