@@ -43,26 +43,24 @@
 }
 
 :root {
-  
-  --primary: #1a3a52; 
-  --primary-foreground: #faf8f3; 
-  --accent: #d97706; 
+  --primary: #1a3a52;
+  --primary-foreground: #faf8f3;
+  --accent: #d97706;
   --accent-foreground: #ffffff;
   --sidebar-primary: #1a3a52;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #d97706;
   --sidebar-accent-foreground: #ffffff;
-  
-  
+
   --chart-1: #1a3a52;
   --chart-2: #d97706;
   --chart-3: #0891b2;
   --chart-4: #f97316;
   --chart-5: #06b6d4;
-  
+
   --radius: 0.65rem;
-  --background: #faf8f3; 
-  --foreground: #2d3748; 
+  --background: #faf8f3;
+  --foreground: #2d3748;
   --card: #ffffff;
   --card-foreground: #2d3748;
   --popover: #ffffff;
@@ -90,7 +88,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -103,33 +101,37 @@
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Poppins", sans-serif;
     font-weight: 700;
     letter-spacing: 0.5px;
   }
-  
+
   h1 {
     @apply text-3xl leading-tight;
   }
-  
+
   h2 {
     @apply text-2xl leading-snug;
   }
-  
+
   h3 {
     @apply text-xl leading-snug;
   }
 }
 
 @layer components {
-  
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; 
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -140,76 +142,75 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; 
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; 
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; 
+      max-width: 1280px;
     }
   }
-  
 
   .btn-primary {
     @apply bg-primary text-primary-foreground px-4 py-2.5 rounded-lg font-medium transition-all duration-150 inline-flex items-center gap-2;
   }
-  
+
   .btn-primary:hover {
     @apply opacity-90;
   }
-  
+
   .btn-secondary {
     @apply bg-secondary text-foreground px-4 py-2.5 rounded-lg font-medium transition-all duration-150 inline-flex items-center gap-2;
   }
-  
+
   .btn-secondary:hover {
     @apply bg-muted;
   }
-  
+
   .btn-danger {
     @apply bg-destructive text-destructive-foreground px-4 py-2.5 rounded-lg font-medium transition-all duration-150 inline-flex items-center gap-2;
   }
-  
+
   .btn-danger:hover {
     @apply bg-red-700;
   }
-  
+
   .btn-accent {
     @apply bg-accent text-accent-foreground px-4 py-2.5 rounded-lg font-medium transition-all duration-150 inline-flex items-center gap-2;
   }
-  
+
   .btn-accent:hover {
     @apply bg-amber-600;
   }
-  
+
   .input-field {
     @apply w-full px-3 py-2.5 border border-border rounded-lg bg-input text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-150;
   }
-  
+
   .card-base {
     @apply bg-card text-card-foreground border border-border rounded-lg shadow-sm p-6;
   }
-  
+
   .sidebar-nav-item {
     @apply flex items-center gap-3 px-4 py-3 rounded-lg text-sidebar-foreground hover:bg-white/10 transition-colors duration-150 cursor-pointer;
   }
-  
+
   .sidebar-nav-item.active {
     @apply bg-white/20 border-l-4 border-sidebar-accent;
   }
-  
+
   .table-header {
     @apply bg-secondary text-foreground font-semibold text-sm px-4 py-3 text-left;
   }
-  
+
   .table-cell {
     @apply px-4 py-3 text-sm text-foreground border-b border-border;
   }
-  
+
   .table-row {
     @apply hover:bg-secondary/50 transition-colors duration-150;
   }
